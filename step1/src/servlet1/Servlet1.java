@@ -1,6 +1,9 @@
+package servlet1;
+
 import java.io.IOException;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,10 +21,10 @@ public class Servlet1 extends HttpServlet {
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Servlet1() { super();
-￼
-db=new DB();
-}
+    public Servlet1() {
+        super();
+        db=new DB();
+    }
 
     /**
      * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
