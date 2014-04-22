@@ -1,4 +1,4 @@
-package servlet1;
+package step1.servlet1;
 
 import java.io.IOException;
 
@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db.DB;
+import step1.db.DB;
 
 /**
  * Servlet implementation class Servlet1
@@ -32,7 +32,7 @@ public class Servlet1 extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request,
             HttpServletResponse response) throws ServletException, IOException {
-        // TODO Lors de l’appel de http get utiliser les classes precedement
+        // TODO Lors de l'appel de http get utiliser les classes precedement
         // creer pour recuperer la liste des utilisateurs
         // TODO ecrire la liste des utilisateurs dans le flux de reponse
         // HttpServletResponse

@@ -1,10 +1,10 @@
-package db;
+package step1.db;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import model.UserModel;
+import step1.model.UserModel;
 
 public class DB {
     private static final String DB_HOST = "db-tp.cpe.fr";
@@ -30,10 +30,10 @@ public class DB {
 
     public ArrayList<UserModel> getData() { // return value
         ArrayList<UserModel> userList = new ArrayList<UserModel>();
-        // Création de la requête
+        // Creation de la requete
         java.sql.Statement query;
         try {
-            // TODO récupérez l’ensemble des parametres de tous les
+            // TODO recuperez l'ensemble des parametres de tous les
             // utilisateurs de la
             // table (('surname', 'lastname', 'age', 'login', 'pwd')
             connection.close();
@@ -44,12 +44,12 @@ public class DB {
     }
 
     public void addUser(UserModel user) {
-        // Creation de la requête
+        // Creation de la requete
         java.sql.Statement query;
         try {
-            // Creation de l'élément de requète
+            // Creation de l'element de requete
             query = connection.createStatement();
-            // TODO creez la requete permettant d’ajout un utilisateur avec tous
+            // TODO creez la requete permettant d'ajout un utilisateur avec tous
             // ces parametres
             // (('surname', 'lastname, 'age', 'login', 'pwd')
             connection.close();
