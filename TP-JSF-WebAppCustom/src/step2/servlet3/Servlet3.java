@@ -1,14 +1,15 @@
-package step2.servlet1;
+package step2.servlet3;
 
 import java.io.IOException;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import step1.db.DB;
+import step2.db.DB;
 import step2.model.UserModelBean;
 
 /**
@@ -29,11 +30,11 @@ public class Servlet3 extends HttpServlet {
     @Override
     public void init() throws ServletException {
         super.init();
+
         // Verifie si DB existe dans l'espace de memoire partage entre les
-        // servlet
-        // si oui on les recupere, si non on le cree et on l'ajoute dans
-        // l'espace de memoire
-        // partage entre les servlet
+        // servlet si oui on les recupere, si non on le cree et on l'ajoute dans
+        // l'espace de memoire partage entre les servlet
+
         if (getServletContext().getAttribute("BD") != null) {
             db = (DB) getServletContext().getAttribute("BD");
         } else {
@@ -56,13 +57,18 @@ public class Servlet3 extends HttpServlet {
      *      response)
      */
     protected void doPost(HttpServletRequest request,
-            HttpServletResponse response)
-
-    throws ServletException, IOException {
+            HttpServletResponse response) throws ServletException, IOException {
         UserModelBean user = (UserModelBean) request.getSession().getAttribute(
                 "myUser");
-        // TODO Sauvegarder l'utilisateur user (creer dans la page jsp et stocke
-        // dans la memoire session) dans la base de donnees
-        // TODO Rediriger la page courante vers la page /step2/display.jsp
+        this.db.addUser(user);
+        // Recuperation du ServletContext, creation d'un dispatcher a la
+        // destination '/follow.jsp'
+        RequestDispatcher dispatch = getServletContext().getRequestDispatcher(
+                "/step2/display.jsp");
+
+        // Pour redirection
+        dispatch.forward(request, response);
+
     }
+
 }
