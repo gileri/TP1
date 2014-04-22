@@ -1,6 +1,7 @@
 package step1.db;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -52,13 +53,21 @@ public class DB {
 
     public void addUser(UserModel user) {
         // Creation de la requete
-        java.sql.Statement query;
+        String requete;
         try {
-            // Creation de l'element de requete
-            query = connection.createStatement();
             // TODO creez la requete permettant d'ajout un utilisateur avec tous
             // ces parametres
             // (('surname', 'lastname, 'age', 'login', 'pwd')
+            requete = "INSERT INTO people(surname, lastname, age, login, password) "
+                    + "VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement ps = connection.prepareStatement(requete);
+            System.out.println(ps.toString());
+            ps.setString(1, user.getSurname());
+            ps.setString(2, user.getLastname());
+            ps.setInt(3, user.getAge());
+            ps.setString(4, user.getLogin());
+            ps.setString(5, user.getPwd());
+            ps.execute();
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
