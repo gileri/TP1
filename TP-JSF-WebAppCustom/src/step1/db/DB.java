@@ -1,17 +1,18 @@
 package step1.db;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import step1.model.UserModel;
 
 public class DB {
-    private static final String DB_HOST = "db-tp.cpe.fr";
+    private static final String DB_HOST = "localhost";
     private static final String DB_PORT = "3306";
-    private static final String DB_NAME = "binome32";
-    private static final String DB_USER = "binome32";
-    private static final String DB_PWD = "binome32";
+    private static final String DB_NAME = "TP_JEE";
+    private static final String DB_USER = "root";
+    private static final String DB_PWD = "root";
     private Connection connection;
 
     public DB() {
@@ -32,10 +33,16 @@ public class DB {
         ArrayList<UserModel> userList = new ArrayList<UserModel>();
         // Creation de la requete
         java.sql.Statement query;
+        String requete;
         try {
-            // TODO recuperez l'ensemble des parametres de tous les
-            // utilisateurs de la
-            // table (('surname', 'lastname', 'age', 'login', 'pwd')
+            query = connection.createStatement();
+            requete = "SELECT * FROM people;";
+            ResultSet resultat = query.executeQuery(requete);
+            while (resultat.next()) {
+                userList.add(new UserModel(resultat.getString(2), resultat
+                        .getString(1), resultat.getInt(3), resultat
+                        .getString(4), resultat.getString(5)));
+            }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
